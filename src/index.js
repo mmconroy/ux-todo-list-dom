@@ -17,49 +17,88 @@ let todos = [
   },
 ];
 
+///Function - create checklist
 function renderTodoApp() {
   const app = document.querySelector("#app");
-  const h1 = document.createElement("h1");
-  const toDoListNode = document.createElement("form");
-
-  h1.innerText = "Todo List";
-
+  const toDoListNode = document.querySelector(".todo-list");
+  toDoListNode.innerHTML = "";
   for (let task of todos) {
-    const isChecked = task.completed ? "checked" : null;
-
+    const isChecked = task.completed ? "checked" : "";
     let html = `
-  <ul style="list-style-type:none;">
     <li class="list-item">
-    <input type=checkbox ${isChecked}>   
+    <input type=checkbox ${isChecked}>
     <label>${task.description}</label>
-    </li>
-  </ul>`;
+    </li>`;
 
     toDoListNode.innerHTML += html;
   }
 
-  app.appendChild(h1);
   app.appendChild(toDoListNode);
 }
 renderTodoApp();
 
-// todos.completed
-//todos.desscirtion
+const submitButton = document.querySelector("#submitBtn");
+const textOutputEl = document.querySelector("#textOutput");
+const todoListItemInput = document.querySelector("todoListItemName");
 
-{
-  /* <div id="app">
-<ul>
-  <li class="list-item">
-    <input type="checkbox"/>
-    Take Jim to the hair salon
-  </li>
-  <li class="list-item">
-    <input type="checkbox"/>
-    Drop off wedding invitation at mailbox
-  </li> <li class="list-item">
-  <input type="checkbox"/>
-  Pick up the cake.
-</li>
-</ul>
-</div> */
+// submitButton.onclick = (event) => {
+//   event.preventDefault();
+//   const todoListItemName = todoListItemInput.value;
+
+//   for (let i = 0; i < todos.length; i++) {
+//     let checkbox = toDoListNode[i];
+//     if (checkbox.checked) {
+//       todoListItemInput.push(checkbox);
+//     }
+//   }
+
+//   textOutputEl.innerHTML = todoListItemName;
+// };
+
+//selectors
+const todoListInput = document.querySelector(".todo-list-input");
+const submitBtn = document.querySelector(".submit-btn");
+const todoList = document.querySelector(".todo-list");
+
+//Event Listeners
+submitBtn.addEventListener("click", addTodo);
+
+//Function - add new todo
+function addTodo(event) {
+  event.preventDefault();
+  let newTodo = {
+    description: todoListInput.value,
+    completed: false,
+  };
+  todos.unshift(newTodo);
+
+  renderTodoApp();
 }
+
+//Remove List Item on Check
+let checkboxes = document.querySelectorAll(".list-item");
+for (let checkbox of checkboxes) {
+  checkbox.addEventListener("change", () => {});
+}
+
+//   const todoDiv = document.createElement("div");
+//   todoDiv.classList.add("todo");
+
+//   const newTodo = document.createElement("li");
+//   newTodo.innerText = todoListInput.value;
+//   newTodo.classList.add("todo-item");
+//   todoDiv.appendChild(newTodo);
+
+//   const completedButton = document.createElement("button");
+//   completedButton.innerText = "Completed";
+//   completedButton.classList.add("complete-btn");
+//   todoDiv.appendChild(completedButton);
+
+//   const TrashButton = document.createElement("button");
+//   TrashButton.innerText = "Remove";
+//   TrashButton.classList.add("trash-btn");
+//   todoDiv.appendChild(TrashButton);
+
+//   todoList.appendChild(todoDiv);
+
+//   todoListInput.value = "";
