@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Todo List</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="src/style.css">
-</head>
+    <link rel="stylesheet" href="src/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-    <div id="app"></div>
+  <body>
+    <header>
+      <h1 class="header">
+        Todo List
+      </h1>
+    </header>
+    <div id="app">
+      <form class="form" id="pageForm">
+        <input
+          type="text"
+          class="todo-list-input"
+          id="todoListInput"
+          placeholder="Add your item here"
+        />
+        <button type="submit" class="submit-btn" id="submitBtn">
+          Add Item
+        </button>
+      </form>
+      <ul class="todo-list"></ul>
+    </div>
 
-    <script src="src/index.js">
-    </script>
-</body>
+    <p id="textOutput"></p>
 
+    <script src="src/index.js"></script>
+  </body>
 </html>
